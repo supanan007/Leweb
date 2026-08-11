@@ -1,252 +1,256 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lanna Eats | ข้าวซอยฟีลคาเฟ่ เชียงใหม่</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Noto Sans Thai -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Noto Sans Thai', 'Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        lanna: {
-                            dark: '#2D312E',
-                            accent: '#C86D51',
-                            cream: '#F9F8F6',
-                            card: '#FFFFFF',
-                            subtle: '#8C9A9E'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Lanna Eats — ร้านลานนาอีท | Modern Northern Thai Cuisine</title>
+    <meta name="description" content="Authentic Northern Thai flavors, made simple for everyone. สัมผัสรสชาติอาหารเหนือแบบล้านนา ในรูปแบบที่เข้าถึงง่ายสำหรับทุกคน">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Modern Minimal Lanna Feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="bg-lanna-cream text-lanna-dark font-sans antialiased selection:bg-lanna-accent selection:text-white">
+<body>
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-lanna-cream/80 backdrop-blur-md border-b border-gray-200/55">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="text-xl font-semibold tracking-tight">
-                Lanna<span class="text-lanna-accent">.Eats</span>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-main">LANNA EATS</span>
+                <span class="logo-sub">ร้านลานนาอีท</span>
             </a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
-                <a href="#menu" class="hover:text-lanna-accent transition">เมนูเด็ด</a>
-                <a href="#story" class="hover:text-lanna-accent transition">เรื่องราว</a>
-                <a href="#location" class="hover:text-lanna-accent transition">พิกัดร้าน</a>
-            </div>
-            <a href="#menu" class="bg-lanna-dark text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-lanna-accent transition shadow-sm">
-                สั่งเลย ✨
-            </a>
-        </div>
-    </nav>
+            
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
 
-    <!-- Hero Section -->
-    <header class="pt-32 pb-20 md:pt-40 md:pb-32 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-        <div class="flex-1 space-y-6 text-center md:text-left">
-            <span class="inline-block bg-white border border-gray-200 text-xs font-semibold px-3 py-1 rounded-full text-lanna-accent uppercase tracking-wider">
-                Open Daily 10:00 - 21:00 CNX
-            </span>
-            <h1 class="text-4xl md:text-6xl font-semibold tracking-tight leading-tight">
-                ข้าวซอยเจ๋งๆ <br>ฟีลคาเฟ่กลางเมืองเชียงใหม่
-            </h1>
-            <p class="text-gray-500 text-base md:text-lg max-w-md mx-auto md:mx-0 font-light">
-                เส้นเหนียวนุ่ม น้ำกะทิเข้มข้นถึงเครื่อง แวะมาเติมพลังหลังเลิกเรียน หรือนั่งชิลกับแก๊งเพื่อนได้แล้ววันนี้
-            </p>
-            <div class="pt-2 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                <a href="#menu" class="w-full sm:w-auto text-center bg-lanna-accent text-white font-medium px-8 py-3 rounded-full hover:bg-opacity-90 transition shadow-md shadow-lanna-accent/20">
-                    ดูเมนูข้าวซอย
-                </a>
-                <a href="#location" class="w-full sm:w-auto text-center bg-white border border-gray-300 font-medium px-8 py-3 rounded-full hover:bg-gray-50 transition">
-                    เช็คเส้นทางมาร้าน
-                </a>
-            </div>
-        </div>
-        <div class="flex-1 w-full max-w-md">
-            <div class="aspect-[4/5] bg-gray-200 rounded-3xl overflow-hidden shadow-2xl relative">
-                <!-- Placeholder สำหรับรูปภาพร้าน/ข้าวซอยมินิมอล -->
-                <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80" alt="Khao Soi" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end p-6">
-                    <p class="text-white text-sm font-medium">Signature: ข้าวซอยน่องไก่ตุ๋นละลายในปาก</p>
-                </div>
-            </div>
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#menu" class="nav-link">Menu</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#order" class="nav-link">Order</a></li>
+                </ul>
+                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                <a href="YOUR_ORDER_LINK_HERE" class="btn btn-primary nav-btn">Order Now</a>
+            </nav>
         </div>
     </header>
 
-    <hr class="border-gray-200/60 max-w-6xl mx-auto">
-
-    <!-- Menu Section (5 เมนูเด็ด) -->
-    <section id="menu" class="py-24 px-6 max-w-6xl mx-auto">
-        <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
-            <h2 class="text-3xl font-semibold tracking-tight">Our Menu (5 ช้อยส์ยืนหนึ่ง)</h2>
-            <p class="text-gray-500 text-sm font-light">คัดมาให้เน้นๆ อร่อยทุกชาม ราคานักศึกษาจับต้องได้</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- Item 1 -->
-            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                <div>
-                    <div class="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden mb-4">
-                        <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Kai" class="w-full h-full object-cover">
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">Modern Northern Thai Cuisine</span>
+                    <h1 class="hero-title">LANNA EATS</h1>
+                    <p class="hero-tagline-en">Authentic Northern Thai flavors, made simple for everyone.</p>
+                    <p class="hero-tagline-th">สัมผัสรสชาติอาหารเหนือแบบล้านนา ในรูปแบบที่เข้าถึงง่ายสำหรับทุกคน</p>
+                    <div class="hero-cta-group">
+                        <a href="#menu" class="btn btn-secondary">View Menu</a>
+                        <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                        <a href="YOUR_ORDER_LINK_HERE" class="btn btn-primary">Order Now</a>
                     </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-lg">ข้าวซอยน่องไก่ตุ๋น</h3>
-                        <span class="text-lanna-accent font-semibold">69.-</span>
-                    </div>
-                    <p class="text-gray-500 text-xs font-light leading-relaxed">
-                        น่องไก่โตๆ ตุ๋นจนเปื่อยนุ่ม น้ำแกงข้าวซอยเข้มข้นสูตรลับเฉพาะของร้าน โรยหมี่กรอบจุกๆ
-                    </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400">
-                    <span>🌟 Best Seller</span>
-                    <span class="font-medium text-lanna-dark">พร้อมเสิร์ฟ</span>
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=1000&q=80" alt="Khao Soi - Traditional Northern Thai Noodle Soup" class="hero-img">
                 </div>
             </div>
+        </section>
 
-            <!-- Item 2 -->
-            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                <div>
-                    <div class="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden mb-4">
-                        <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Beef" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-lg">ข้าวซอยเนื้อตุ๋น</h3>
-                        <span class="text-lanna-accent font-semibold">79.-</span>
-                    </div>
-                    <p class="text-gray-500 text-xs font-light leading-relaxed">
-                        เนื้อน่องลายตุ๋นพรีเมียม เคี้ยวนุ่มละมุนลิ้น ฟินคำโต สายเนื้อห้ามพลาดเด็ดขาด
-                    </p>
+        <!-- Menu / Catalog Section -->
+        <section id="menu" class="menu-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Menu</h2>
+                    <p>เมนูแนะนำจากลานนาอีท</p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400">
-                    <span>🔥 สายเนื้อต้องลอง</span>
-                    <span class="font-medium text-lanna-dark">พร้อมเสิร์ฟ</span>
-                </div>
-            </div>
 
-            <!-- Item 3 -->
-            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                <div>
-                    <div class="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden mb-4">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Seafood" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-lg">ข้าวซอยหมูย่างคุโรบูตะ</h3>
-                        <span class="text-lanna-accent font-semibold">89.-</span>
-                    </div>
-                    <p class="text-gray-500 text-xs font-light leading-relaxed">
-                        หมูคุโรบูตะย่างหอมๆ หั่นเต๋าพอดีคำ เสิร์ฟโปะหน้าข้าวซอยเข้มข้น เข้ากันอย่างลงตัว
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400">
-                    <span>✨ ยอดฮิตไอจีสตอรี่</span>
-                    <span class="font-medium text-lanna-dark">พร้อมเสิร์ฟ</span>
-                </div>
-            </div>
-
-            <!-- Item 4 -->
-            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                <div>
-                    <div class="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden mb-4">
-                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Vegan" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-lg">ข้าวซอยเต้าหู้เห็ดรวม (Vegan)</h3>
-                        <span class="text-lanna-accent font-semibold">59.-</span>
-                    </div>
-                    <p class="text-gray-500 text-xs font-light leading-relaxed">
-                        สายเฮลตี้หรือเพื่อนสายมังสวิรัติก็จอยได้ น้ำแกงทำจากเครื่องพริกแกงสูตรเฉพาะแบบไม่ใส่เนื้อสัตว์
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-400">
-                    <span>🥗 Plant-Based Friendly</span>
-                    <span class="font-medium text-lanna-dark">พร้อมเสิร์ฟ</span>
-                </div>
-            </div>
-
-            <!-- Item 5 -->
-            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col justify-between lg:col-span-2">
-                <div class="flex flex-col md:flex-row gap-6 items-center">
-                    <div class="aspect-[4/3] md:w-1/2 w-full bg-gray-100 rounded-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Dry" class="w-full h-full object-cover">
-                    </div>
-                    <div class="md:w-1/2 w-full">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-semibold text-lg">ข้าวซอยแห้งเบคอนกรอบ</h3>
-                            <span class="text-lanna-accent font-semibold">79.-</span>
+                <div class="menu-grid">
+                    <!-- Menu 01 -->
+                    <article class="menu-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Chicken - ข้าวซอยไก่">
                         </div>
-                        <p class="text-gray-500 text-xs font-light leading-relaxed mb-4">
-                            ฉีกกฎข้าวซอยน้ำด้วยข้าวซอยแห้งคลุกคลิกเข้มข้น ท็อปด้วยเบคอนกรอบและไข้ดองยางมะตูมเยิ้มๆ ฟินแบบแสงออกปาก
-                        </p>
-                        <div class="flex items-center justify-between text-xs text-gray-400 pt-4 border-t border-gray-100">
-                            <span>🔥 Limited Edition</span>
-                            <span class="font-medium text-lanna-dark">พร้อมเสิร์ฟ</span>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-title-en">Khao Soi Chicken</h3>
+                                <span class="card-title-th">ข้าวซอยไก่</span>
+                            </div>
+                            <p class="card-desc">ข้าวซอยน้ำแกงเข้มข้น เสิร์ฟพร้อมน่องไก่นุ่มและเส้นข้าวซอยแบบดั้งเดิม (Rich and creamy Northern Thai coconut curry noodle soup served with tender chicken drumstick)</p>
+                            <div class="card-footer">
+                                <span class="card-price">89 THB</span>
+                                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                                <a href="YOUR_ORDER_LINK_HERE" class="btn btn-small">Order</a>
+                            </div>
                         </div>
+                    </article>
+
+                    <!-- Menu 02 -->
+                    <article class="menu-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1547496592-146d4 narrow?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Beef - ข้าวซอยเนื้อ" onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80'">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-title-en">Khao Soi Beef</h3>
+                                <span class="card-title-th">ข้าวซอยเนื้อ</span>
+                            </div>
+                            <p class="card-desc">ข้าวซอยรสเข้มข้นพร้อมเนื้อวัวตุ๋นนุ่ม เหมาะสำหรับผู้ที่ชอบรสชาติกลมกล่อมและเข้มข้น (Signature curry noodles with braised tender beef chuck)</p>
+                            <div class="card-footer">
+                                <span class="card-price">109 THB</span>
+                                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                                <a href="YOUR_ORDER_LINK_HERE" class="btn btn-small">Order</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Menu 03 -->
+                    <article class="menu-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=600&q=80" alt="Khao Soi Pork - ข้าวซอยหมู">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-title-en">Khao Soi Pork</h3>
+                                <span class="card-title-th">ข้าวซอยหมู</span>
+                            </div>
+                            <p class="card-desc">ข้าวซอยสูตรของร้าน เสิร์ฟพร้อมหมูนุ่มและเครื่องแกงหอม ๆ (Aromatic curry noodles topped with tender marinated pork)</p>
+                            <div class="card-footer">
+                                <span class="card-price">89 THB</span>
+                                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                                <a href="YOUR_ORDER_LINK_HERE" class="btn btn-small">Order</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Menu 04 -->
+                    <article class="menu-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80" alt="Nam Ngiao - ขนมจีนน้ำเงี้ยว">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-title-en">Nam Ngiao</h3>
+                                <span class="card-title-th">ขนมจีนน้ำเงี้ยว</span>
+                            </div>
+                            <p class="card-desc">อาหารเหนือรสเข้มข้น เสิร์ฟพร้อมขนมจีนและเครื่องเคียงแบบล้านนา (Spicy and tangy Northern Thai rice noodle soup with pork and tomato broth)</p>
+                            <div class="card-footer">
+                                <span class="card-price">79 THB</span>
+                                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                                <a href="YOUR_ORDER_LINK_HERE" class="btn btn-small">Order</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Menu 05 -->
+                    <article class="menu-card">
+                        <div class="card-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=600&q=80" alt="Sai Ua - ไส้อั่ว">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-title-en">Sai Ua — Northern Thai Sausage</h3>
+                                <span class="card-title-th">ไส้อั่ว</span>
+                            </div>
+                            <p class="card-desc">ไส้อั่วสมุนไพรแบบเหนือ หอมเครื่องเทศและสมุนไพร เสิร์ฟเป็นเมนูทานเล่นหรือทานคู่กับอาหารจานหลัก (Grilled herb-packed Northern Thai pork sausage)</p>
+                            <div class="card-footer">
+                                <span class="card-price">99 THB</span>
+                                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                                <a href="YOUR_ORDER_LINK_HERE" class="btn btn-small">Order</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container about-container">
+                <div class="about-content">
+                    <span class="badge">About Us</span>
+                    <h2>Our Story</h2>
+                    <p class="about-en">“Lanna Eats brings the flavors of Northern Thailand to a modern table. We keep the heart of traditional Lanna cuisine while presenting it in a simple, friendly and accessible way for both locals and travelers.”</p>
+                    <p class="about-th">“ลานนาอีทนำเสนอกลิ่นอายอาหารเหนือผ่านรูปแบบที่ทันสมัย โดยยังคงเอกลักษณ์ของรสชาติแบบล้านนาไว้ พร้อมทำให้อาหารเหนือเข้าถึงง่ายสำหรับทั้งคนไทยและนักท่องเที่ยวจากทั่วโลก”</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Lanna Eats Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌶️</div>
+                        <h3>Northern Flavor</h3>
+                        <p>Authentic Northern Thai taste</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>Modern Lanna</h3>
+                        <p>Traditional inspiration, modern experience</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌏</div>
+                        <h3>For Everyone</h3>
+                        <p>Easy to understand for locals and travelers</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🍜</div>
+                        <h3>Made for You</h3>
+                        <p>Simple, comforting and delicious</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- Story Section -->
-    <section id="story" class="bg-white py-24 px-6 border-y border-gray-200/50">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <span class="text-xs font-semibold text-lanna-accent tracking-widest uppercase">About Lanna Eats</span>
-            <h2 class="text-2xl md:text-4xl font-semibold tracking-tight">ข้าวซอยแบบเดิม เพิ่มเติมคือความคูล</h2>
-            <p class="text-gray-500 text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto">
-                เราอยากให้ข้าวซอย อาหารพื้นเมืองเหนือสุดคลาสสิก เข้าถึงง่ายและตอบโจทย์ไลฟ์สไตล์เด็กมหาลัยในเชียงใหม่ 
-                ร้านตกแต่งแนว Minimalist ถ่ายรูปสวยทุกมุม เครื่องแน่น ราคาเป็นมิตร สตูดิโอข้าวซอยส่วนตัวของชาวแก๊งคุณ
-            </p>
-        </div>
-    </section>
-
-    <!-- Location & Contact -->
-    <section id="location" class="py-24 px-6 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-                <span class="text-xs font-semibold text-lanna-accent tracking-widest uppercase">Visit Us</span>
-                <h2 class="text-3xl font-semibold tracking-tight">แวะมาจอยกันที่ร้าน</h2>
-                <p class="text-gray-500 text-sm font-light">
-                    พิกัดลับย่านนิมมานฯ / หลังมอ (เชียงใหม่) ใกล้ที่ไหน แวะมาเติมพลังกันได้เลย ร้านเปิดแอร์เย็นฉ่ำ มีมุมปลั๊กไฟให้นั่งทำงานได้
-                </p>
-                <div class="space-y-3 text-sm text-gray-600">
-                    <p class="flex items-center gap-3">📍 **พิกัด:** ซอยหลังมอชอ / นิมมาน ซอย 11 เชียงใหม่</p>
-                    <p class="flex items-center gap-3">⏰ **เวลาเปิด-ปิด:** เปิดทุกวัน 10:00 - 21:00 น.</p>
-                    <p class="flex items-center gap-3">📞 **โทร/เดลิเวอรี่:** 089-XXX-XXXX</p>
-                </div>
-                <div class="pt-4 flex gap-3">
-                    <a href="#" class="bg-lanna-dark text-white text-xs font-medium px-5 py-2.5 rounded-full hover:bg-lanna-accent transition">
-                        เปิด Google Maps
-                    </a>
-                </div>
+        <!-- Order / CTA Section -->
+        <section id="order" class="cta-section">
+            <div class="container cta-container">
+                <h2>Hungry? Let’s Eat!</h2>
+                <p>Ready to taste Northern Thailand?</p>
+                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                <a href="YOUR_ORDER_LINK_HERE" class="btn btn-primary btn-large">ORDER NOW</a>
             </div>
-            <div class="aspect-[4/3] bg-gray-200 rounded-3xl overflow-hidden shadow-md">
-                <!-- ใส่รูปแผนที่หรือบรรยากาศร้าน -->
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Restaurant Vibe" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-lanna-dark text-white/60 py-12 px-6 text-center text-xs font-light">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-            <p class="text-white text-sm font-semibold tracking-tight">Lanna<span class="text-lanna-accent">.Eats</span> CNX</p>
-            <p>© 2026 Lanna Eats. All rights reserved. Made for CNX Students.</p>
-            <div class="flex space-x-6 text-white">
-                <a href="#" class="hover:text-lanna-accent transition">Instagram</a>
-                <a href="#" class="hover:text-lanna-accent transition">TikTok</a>
-                <a href="#" class="hover:text-lanna-accent transition">Line Official</a>
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <span class="footer-title">LANNA EATS</span>
+                <p class="footer-tagline">Authentic Northern Thai flavors, made simple.</p>
+                <span class="footer-location">Northern Thai Food • Chiang Mai • Thailand</span>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#order">Order</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <!-- Replace YOUR_ORDER_LINK_HERE with the real ordering link -->
+                <a href="YOUR_ORDER_LINK_HERE" class="footer-order-link">Order via Online Store</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Lanna Eats. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
