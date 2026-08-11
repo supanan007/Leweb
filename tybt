@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANNA EATS | Reimagined Northern Culinary & Khao Soi Craft</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Prompt & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lanna: {
+                            gold: '#D4AF37',
+                            amber: '#E5A93C',
+                            dark: '#0D0C0B',
+                            charcoal: '#1A1816',
+                            card: '#24211E',
+                            cream: '#F9F6F0',
+                            terracotta: '#C85A32',
+                            sage: '#8A9A86'
+                        }
+                    },
+                    fontFamily: {
+                        prompt: ['Prompt', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #0D0C0B;
+            color: #F9F6F0;
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0B2 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-panel {
+            background: rgba(36, 33, 30, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(to bottom, rgba(13, 12, 11, 0.4), rgba(13, 12, 11, 0.95)), url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 12px 30px -10px rgba(212, 175, 55, 0.25);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-lanna-gold selection:text-lanna-dark">
+
+    <!-- ================= 1. HEADER / NAVIGATION ================= -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-lanna-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full border border-lanna-gold flex items-center justify-center bg-lanna-dark group-hover:border-lanna-amber transition duration-300">
+                    <span class="text-lanna-gold font-serif font-bold text-xl">L</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-widest font-serif gold-gradient-text">LANNA EATS</span>
+                    <span class="text-[9px] uppercase tracking-widest text-stone-400">Chiang Mai Modern Culinary</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-stone-300 hover:text-lanna-gold transition">เรื่องราวของเรา</a>
+                <a href="#food-menu" class="text-stone-300 hover:text-lanna-gold transition">เมนูอาหาร</a>
+                <a href="#drink-menu" class="text-stone-300 hover:text-lanna-gold transition">เครื่องดื่ม</a>
+                <a href="#order-qr" class="text-stone-300 hover:text-lanna-gold transition">สั่งอาหารออนไลน์</a>
+                <a href="#contact" class="text-stone-300 hover:text-lanna-gold transition">ที่ตั้งร้าน</a>
+            </nav>
+
+            <!-- CTA Button & Mobile Toggle -->
+            <div class="flex items-center space-x-4">
+                <a href="#order-qr" class="hidden sm:inline-flex items-center space-x-2 bg-gradient-to-r from-lanna-gold to-lanna-amber text-lanna-dark font-semibold px-5 py-2.5 rounded-full text-sm hover:brightness-110 shadow-lg shadow-lanna-gold/20 transition duration-300">
+                    <i class="fa-solid fa-qrcode"></i>
+                    <span>สั่งซื้อผ่าน LINE</span>
+                </a>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-stone-300 hover:text-lanna-gold focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-lanna-charcoal border-b border-lanna-gold/20 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-stone-200 hover:text-lanna-gold font-medium py-1">เรื่องราวของเรา</a>
+            <a href="#food-menu" class="block text-stone-200 hover:text-lanna-gold font-medium py-1">เมนูอาหาร (5 เมนู)</a>
+            <a href="#drink-menu" class="block text-stone-200 hover:text-lanna-gold font-medium py-1">เมนูเครื่องดื่ม (3 รายการ)</a>
+            <a href="#order-qr" class="block text-stone-200 hover:text-lanna-gold font-medium py-1">สั่งซื้อผ่าน QR Code LINE</a>
+            <a href="#contact" class="block text-stone-200 hover:text-lanna-gold font-medium py-1">ที่ตั้งและการเดินทาง</a>
+            <div class="pt-4 border-t border-stone-800">
+                <a href="#order-qr" class="block text-center bg-lanna-gold text-lanna-dark font-semibold py-3 rounded-xl">
+                    <i class="fa-solid fa-qrcode mr-2"></i>สแกนสั่งอาหารทันที
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= 2. HERO SECTION ================= -->
+    <section class="relative min-h-screen hero-bg flex items-center justify-center pt-24 pb-16 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-8 z-10">
+            
+            <div class="inline-flex items-center space-x-2 bg-lanna-charcoal/80 border border-lanna-gold/30 rounded-full px-4 py-1.5 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-lanna-amber animate-pulse"></span>
+                <span class="text-xs uppercase tracking-widest text-lanna-gold font-medium">Reimagined Northern Craft Cuisine</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold leading-tight">
+                เปิดมิติใหม่แห่งรสชาติ <br>
+                <span class="gold-gradient-text">"ข้าวซอยล้านนา"</span>
+            </h1>
+
+            <p class="text-stone-300 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                การพบกันของสูตรลับดั้งเดิมจากเชียงใหม่ กับวัตถุดิบระดับพรีเมียมและการรังสรรค์แบบร่วมสมัย สำหรับคนรุ่นใหม่และนักเดินทางจากทั่วโลก
+            </p>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#food-menu" class="w-full sm:w-auto bg-lanna-gold hover:bg-lanna-amber text-lanna-dark font-semibold px-8 py-4 rounded-full shadow-lg shadow-lanna-gold/20 transition duration-300 flex items-center justify-center space-x-2">
+                    <span>สำรวจเมนูอาหาร</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="#order-qr" class="w-full sm:w-auto bg-lanna-charcoal/80 hover:bg-stone-800 text-stone-200 border border-lanna-gold/40 px-8 py-4 rounded-full backdrop-blur-md transition duration-300 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-qrcode text-lanna-gold"></i>
+                    <span>สั่งผ่าน QR Code</span>
+                </a>
+            </div>
+
+            <!-- Quick Info Badges -->
+            <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto border-t border-stone-800/80">
+                <div class="text-center p-3">
+                    <div class="text-lanna-gold font-serif text-2xl font-bold">8 Hours</div>
+                    <div class="text-stone-400 text-xs mt-1">เคี่ยวน้ำซุปเข้มข้น</div>
+                </div>
+                <div class="text-center p-3">
+                    <div class="text-lanna-gold font-serif text-2xl font-bold">Handcrafted</div>
+                    <div class="text-stone-400 text-xs mt-1">เส้นสดทำมือวันต่อวัน</div>
+                </div>
+                <div class="text-center p-3">
+                    <div class="text-lanna-gold font-serif text-2xl font-bold">Premium</div>
+                    <div class="text-stone-400 text-xs mt-1">วากิว A5 & Confit</div>
+                </div>
+                <div class="text-center p-3">
+                    <div class="text-lanna-gold font-serif text-2xl font-bold">Nimman Soi 7</div>
+                    <div class="text-stone-400 text-xs mt-1">ใจกลางย่านนิมมาน</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= 3. ABOUT US SECTION ================= -->
+    <section id="about" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="relative">
+                <div class="relative rounded-2xl overflow-hidden border border-lanna-gold/30 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000" alt="Lanna Eats Dining Atmosphere" class="w-full h-[450px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-lanna-dark via-transparent to-transparent"></div>
+                </div>
+                <div class="absolute -bottom-6 -right-6 hidden sm:block bg-lanna-card border border-lanna-gold/40 p-6 rounded-2xl shadow-2xl max-w-xs backdrop-blur-md">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <i class="fa-solid fa-utensils text-lanna-gold text-xl"></i>
+                        <h4 class="font-bold text-stone-100">Modern Lanna Craft</h4>
+                    </div>
+                    <p class="text-xs text-stone-400 leading-relaxed">
+                        ผสานสถาปัตยกรรมล้านนาเข้ากับความร่วมสมัย เสิร์ฟเมนูอาหารเหนือสไตล์ Gourmet ในบรรยากาศสุดชิค
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="inline-flex items-center space-x-2 text-lanna-gold text-sm font-semibold tracking-wider uppercase">
+                    <span class="w-8 h-[2px] bg-lanna-gold"></span>
+                    <span>Our Story & Philosophy</span>
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-100 leading-tight">
+                    ตำนานความอร่อยบทใหม่ <br>
+                    <span class="gold-gradient-text">ที่เปลี่ยนมุมมองอาหารเหนือไปตลอดกาล</span>
+                </h2>
+
+                <p class="text-stone-300 leading-relaxed font-light">
+                    <strong>Lanna Eats</strong> ถือกำเนิดขึ้นจากความตั้งใจที่จะถ่ายทอดเสน่ห์ของ <strong>"ข้าวซอย"</strong> และอาหารเหนือให้เข้าถึงง่าย ทันสมัย แต่ยังคงรักษารากเหง้าของรสชาติที่เข้มข้นจัดจ้านแบบล้านนาดั้งเดิม
+                </p>
+
+                <p class="text-stone-400 text-sm leading-relaxed">
+                    เรายกระดับน้ำแกงข้าวซอยด้วยการเคี่ยวกระดูกเคี่ยวน้ำซุปสมุนไพรกว่า 8 ชั่วโมง เลือกใช้เนื้อวากิวระดับพรีเมียม น่องไก่สไตล์ฝรั่งเศส (Confit) พร้อมเส้นข้าวซอยสดทำมือวันต่อวัน เสิร์ฟในบรรยากาศตกแต่งโมเดิร์นลอฟท์ที่เหมาะสำหรับการแฮงเอาท์ของคนรุ่นใหม่และนักท่องเที่ยวสาย Foodie
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <div class="flex items-start space-x-3 bg-lanna-card/50 p-3 rounded-xl border border-stone-800">
+                        <i class="fa-solid fa-check text-lanna-gold mt-1"></i>
+                        <div>
+                            <h5 class="text-sm font-semibold text-stone-200">วัตถุดิบเกรดพรีเมียม</h5>
+                            <p class="text-xs text-stone-400">คัดสรรวัตถุดิบท้องถิ่นผสานเนื้อนำเข้า</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3 bg-lanna-card/50 p-3 rounded-xl border border-stone-800">
+                        <i class="fa-solid fa-leaf text-lanna-gold mt-1"></i>
+                        <div>
+                            <h5 class="text-sm font-semibold text-stone-200">Vegan & Vegetarian Option</h5>
+                            <p class="text-xs text-stone-400">มีตัวเลือกข้าวซอยเจและมังสวิรัติ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= 4. FOOD MENU (5 ITEMS) ================= -->
+    <section id="food-menu" class="py-24 bg-lanna-charcoal relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-lanna-gold uppercase tracking-widest text-xs font-semibold">Signature Culinary Creations</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold">5 เมนูอาหารไฮไลท์ประจำร้าน</h2>
+                <p class="text-stone-400 font-light">คัดสรรและรังสรรค์อย่างพิถีพิถันเพื่อมอบประสบการณ์ความอร่อยที่ไม่เหมือนใคร</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Food Item 1 -->
+                <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=800" alt="ข้าวซอยเนื้อวากิวออสเตรเลีย" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                            <span class="absolute top-4 left-4 bg-lanna-gold text-lanna-dark font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Chef's Recommended</span>
+                            <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿280</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-serif text-stone-100">1. ข้าวซอยเนื้อวากิวออสเตรเลีย</h3>
+                            <p class="text-stone-400 text-sm leading-relaxed">
+                                เนื้อวากิวสไลซ์บางเบิร์นไฟหอมกลิ่นกระทะ เสิร์ฟพร้อมน้ำแกงข้าวซอยเข้มข้นสูตรเฉพาะ และเส้นสดเหนียวนุ่ม
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>สั่งเมนูนี้</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Food Item 2 -->
+                <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=800" alt="ข้าวซอยน่องไก่ Confit" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                            <span class="absolute top-4 left-4 bg-stone-900/80 text-stone-300 text-xs px-3 py-1 rounded-full">Best Seller</span>
+                            <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿165</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-serif text-stone-100">2. ข้าวซอยน่องไก่ Confit</h3>
+                            <p class="text-stone-400 text-sm leading-relaxed">
+                                น่องไก่ติดสะโพกตุ๋นน้ำมันสไตล์ฝรั่งเศส หนังกรอบเนื้อนุ่มละลายในปาก ราดน้ำแกงข้าวซอยหอมเครื่องเทศ
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>สั่งเมนูนี้</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Food Item 3 -->
+                <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800" alt="ข้าวซอยแห้งกุ้งแม่น้ำย่าง" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                            <span class="absolute top-4 left-4 bg-lanna-terracotta text-white text-xs px-3 py-1 rounded-full">New Arrival</span>
+                            <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿250</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-serif text-stone-100">3. ข้าวซอยแห้งกุ้งแม่น้ำย่าง</h3>
+                            <p class="text-stone-400 text-sm leading-relaxed">
+                                ข้าวซอยผัดแห้งซอสเข้มข้น เสิร์ฟพร้อมกุ้งแม่น้ำตัวโตย่างมันกุ้งฉ่ำๆ ท็อปด้วยหมี่กรอบและผักดองโฮมเมด
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>สั่งเมนูนี้</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Food Item 4 -->
+                <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800" alt="ชุดเซต Lanna Tapas Platter" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                            <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿320</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-serif text-stone-100">4. เซต Lanna Tapas Platter</h3>
+                            <p class="text-stone-400 text-sm leading-relaxed">
+                                ออร์เดิร์ฟเมืองยุคใหม่ รวมไส้อั่วรมควันไม้ลำไย, น้ำพริกหนุ่ม, น้ำพริกอ่อง เสิร์ฟคู่กับแคปหมูกรอบและผักออร์แกนิก
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>สั่งเมนูนี้</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Food Item 5 -->
+                <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800" alt="ข้าวซอยเห็ดออร์แกนิกและเต้าหู้ทอด (Vegan)" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                            <span class="absolute top-4 left-4 bg-lanna-sage text-white text-xs font-semibold px-3 py-1 rounded-full">Vegan Friendly</span>
+                            <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿150</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold font-serif text-stone-100">5. ข้าวซอยเห็ดออร์แกนิก (Vegan)</h3>
+                            <p class="text-stone-400 text-sm leading-relaxed">
+                                ข้าวซอยมังสวิรัติน้ำแกงกะทิหอมนุ่ม เสิร์ฟพร้อมเห็ดอ่างขาง 3 ชนิด เต้าหู้คาเกะทอดกรอบ และเส้นสดไร้ไข่
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>สั่งเมนูนี้</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Promo Banner Card -->
+                <div class="bg-gradient-to-br from-lanna-card via-lanna-charcoal to-stone-900 rounded-2xl p-8 border border-lanna-gold/40 flex flex-col justify-between items-center text-center">
+                    <div class="space-y-4 my-auto">
+                        <div class="w-16 h-16 rounded-full bg-lanna-gold/10 border border-lanna-gold/30 flex items-center justify-center mx-auto text-lanna-gold text-2xl">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-lanna-gold">มื้อพิเศษของคุณ</h3>
+                        <p class="text-stone-300 text-sm leading-relaxed">
+                            ต้องการปรับระดับความเผ็ด หรือเลือกไม่ใส่กะทิ สามารถแจ้งเชฟผ่านระบบสั่งซื้อ QR Code ได้ทันที!
+                        </p>
+                    </div>
+                    <a href="#order-qr" class="w-full mt-6 bg-gradient-to-r from-lanna-gold to-lanna-amber text-lanna-dark font-bold py-3 rounded-xl transition shadow-lg hover:brightness-110">
+                        สั่งผ่าน LINE QR Code
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= 5. DRINK MENU (3 ITEMS) ================= -->
+    <section id="drink-menu" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-lanna-gold uppercase tracking-widest text-xs font-semibold">Crafted Botanical Mocktails & Tea</span>
+            <h2 class="text-3xl sm:text-5xl font-serif font-bold">3 เมนูเครื่องดื่ม Signature</h2>
+            <p class="text-stone-400 font-light">เครื่องดื่มสูตรพิเศษที่คิดค้นมาเพื่อทานคู่กับข้าวซอยเพื่อตัดความมันและเพิ่มความสดชื่น</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            
+            <!-- Drink Item 1 -->
+            <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                <div>
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=800" alt="ชาไทยลำไยออร์แกนิก Cold Brew" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿85</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold font-serif text-stone-100">1. ชาไทยลำไย Cold Brew</h3>
+                        <p class="text-stone-400 text-sm leading-relaxed">
+                            ชาไทยสกัดเย็นเข้มข้น ผสานความหวานกลมกล่อมจากเนื้อลำไยอบแห้งเชียงใหม่ ให้ความหอมสดชื่นเป็นเอกลักษณ์
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                        <i class="fa-solid fa-glass-water"></i>
+                        <span>สั่งเครื่องดื่มนี้</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Drink Item 2 -->
+            <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                <div>
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=800" alt="น้ำอัญชันมะนาวสมุนไพรโซดา" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿75</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold font-serif text-stone-100">2. อัญชันมะนาวตะไคร้โซดา</h3>
+                        <p class="text-stone-400 text-sm leading-relaxed">
+                            ความลงตัวของดอกอัญชัน มะนาวสด และไซรัปตะไคร้โฮมเมด เติมความซ่าด้วยโซดา ช่วยล้างความมันของน้ำแกงได้ดีเยี่ยม
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                        <i class="fa-solid fa-glass-water"></i>
+                        <span>สั่งเครื่องดื่มนี้</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Drink Item 3 -->
+            <div class="bg-lanna-card rounded-2xl overflow-hidden border border-stone-800 card-hover flex flex-col justify-between">
+                <div>
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=800" alt="ชามะเกี๋ยงเชียงใหม่พรีเมียม" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                        <span class="absolute bottom-4 right-4 bg-lanna-dark/90 text-lanna-gold font-serif font-bold text-xl px-4 py-1.5 rounded-xl border border-lanna-gold/30">฿95</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold font-serif text-stone-100">3. ชามะเกี๋ยงผสมน้ำผึ้งป่า</h3>
+                        <p class="text-stone-400 text-sm leading-relaxed">
+                            ชาผลไม้มะเกี๋ยง (เชอร์รี่เมืองเหนือ) ผสมน้ำผึ้งดอกไม้ป่า รสชาติเปรี้ยวหวานกลมกล่อม อุดมด้วยสารต้านอนุมูลอิสระ
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6 pt-0">
+                    <a href="#order-qr" class="w-full inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-lanna-gold hover:text-lanna-dark text-stone-300 font-medium py-2.5 rounded-xl text-sm transition">
+                        <i class="fa-solid fa-glass-water"></i>
+                        <span>สั่งเครื่องดื่มนี้</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= 6. ORDER VIA LINE QR CODE SECTION ================= -->
+    <section id="order-qr" class="py-24 bg-gradient-to-b from-lanna-charcoal to-lanna-dark border-t border-b border-lanna-gold/20 relative overflow-hidden">
+        
+        <div class="absolute top-0 right-0 w-96 h-96 bg-lanna-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-lanna-amber/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-lanna-card rounded-3xl p-8 sm:p-12 border border-lanna-gold/30 shadow-2xl grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- QR Code Display Box -->
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="relative bg-white p-6 rounded-3xl shadow-2xl border-4 border-lanna-gold">
+                        <svg class="w-52 h-52 sm:w-64 sm:h-64" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="200" height="200" fill="white"/>
+                            <rect x="10" y="10" width="50" height="50" fill="#0D0C0B"/>
+                            <rect x="20" y="20" width="30" height="30" fill="white"/>
+                            <rect x="25" y="25" width="20" height="20" fill="#0D0C0B"/>
+                            
+                            <rect x="140" y="10" width="50" height="50" fill="#0D0C0B"/>
+                            <rect x="150" y="20" width="30" height="30" fill="white"/>
+                            <rect x="155" y="25" width="20" height="20" fill="#0D0C0B"/>
+                            
+                            <rect x="10" y="140" width="50" height="50" fill="#0D0C0B"/>
+                            <rect x="20" y="150" width="30" height="30" fill="white"/>
+                            <rect x="25" y="155" width="20" height="20" fill="#0D0C0B"/>
+                            
+                            <rect x="70" y="10" width="10" height="40" fill="#0D0C0B"/>
+                            <rect x="90" y="20" width="20" height="10" fill="#0D0C0B"/>
+                            <rect x="120" y="10" width="10" height="30" fill="#0D0C0B"/>
+                            <rect x="70" y="70" width="60" height="10" fill="#0D0C0B"/>
+                            <rect x="10" y="70" width="40" height="10" fill="#0D0C0B"/>
+                            <rect x="150" y="70" width="40" height="10" fill="#0D0C0B"/>
+                            <rect x="80" y="90" width="30" height="30" fill="#0D0C0B"/>
+                            <rect x="130" y="100" width="20" height="40" fill="#0D0C0B"/>
+                            <rect x="70" y="140" width="20" height="30" fill="#0D0C0B"/>
+                            <rect x="100" y="150" width="40" height="20" fill="#0D0C0B"/>
+                            <rect x="150" y="140" width="30" height="30" fill="#0D0C0B"/>
+                            <rect x="120" y="180" width="50" height="10" fill="#0D0C0B"/>
+                            <rect x="30" y="100" width="20" height="20" fill="#0D0C0B"/>
+                            <rect x="170" y="90" width="20" height="20" fill="#0D0C0B"/>
+                            
+                            <circle cx="100" cy="100" r="18" fill="#D4AF37"/>
+                            <text x="100" y="105" font-family="Prompt, sans-serif" font-weight="bold" font-size="12" fill="#0D0C0B" text-anchor="middle">LINE</text>
+                        </svg>
+                        
+                        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-lanna-gold text-lanna-dark text-[11px] font-bold px-4 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                            @lannaeats
+                        </div>
+                    </div>
+
+                    <span class="text-xs text-stone-400 font-light">สแกนด้วยกล้องมือถือหรือแอป LINE</span>
+                </div>
+
+                <!-- Text & Instruction Info -->
+                <div class="space-y-6">
+                    <div class="inline-flex items-center space-x-2 bg-green-500/10 border border-green-500/30 text-green-400 px-3 py-1 rounded-full text-xs font-semibold">
+                        <i class="fa-brands fa-line text-sm"></i>
+                        <span>LINE Official Account Center</span>
+                    </div>
+
+                    <h2 class="text-3xl font-serif font-bold text-stone-100">
+                        สั่งอาหาร & จองโต๊ะสะดวกผ่าน <span class="gold-gradient-text">LINE Official</span>
+                    </h2>
+
+                    <p class="text-stone-300 text-sm leading-relaxed font-light">
+                        ไม่ต้องรอนาน! คุณสามารถสแกน QR Code เพื่อสั่งอาหารล่วงหน้า เลือกความเผ็ด จัดส่งถึงโรงแรม หรือสั่งทานที่ร้านได้ง่ายๆ พร้อมสะสมแต้มรับส่วนลดพิเศษ
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-center space-x-3 text-sm text-stone-300">
+                            <div class="w-6 h-6 rounded-full bg-lanna-gold/20 text-lanna-gold flex items-center justify-center font-bold text-xs shrink-0">1</div>
+                            <span>สแกน QR Code หรือเพิ่มเพื่อน Line ID: <strong class="text-lanna-gold">@lannaeats</strong></span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-sm text-stone-300">
+                            <div class="w-6 h-6 rounded-full bg-lanna-gold/20 text-lanna-gold flex items-center justify-center font-bold text-xs shrink-0">2</div>
+                            <span>เลือกเมนูอาหาร 5 รายการ & เครื่องดื่ม Signature</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-sm text-stone-300">
+                            <div class="w-6 h-6 rounded-full bg-lanna-gold/20 text-lanna-gold flex items-center justify-center font-bold text-xs shrink-0">3</div>
+                            <span>ชำระเงินผ่าน PromptPay แล้วรอรับอาหารได้ทันที</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-col sm:flex-row gap-3">
+                        <a href="https://line.me" target="_blank" class="inline-flex items-center justify-center space-x-2 bg-[#00B900] hover:bg-[#009900] text-white font-semibold px-6 py-3 rounded-xl text-sm transition shadow-lg">
+                            <i class="fa-brands fa-line text-lg"></i>
+                            <span>แอด LINE Official เลย</span>
+                        </a>
+                        <a href="tel:053999888" class="inline-flex items-center justify-center space-x-2 bg-stone-800 hover:bg-stone-700 text-stone-200 font-semibold px-6 py-3 rounded-xl text-sm border border-stone-700 transition">
+                            <i class="fa-solid fa-phone text-lanna-gold"></i>
+                            <span>โทร 053-999-888</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 7. LOCATION & CONTACT SECTION ================= -->
+    <section id="contact" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="space-y-6">
+                <span class="text-lanna-gold uppercase tracking-widest text-xs font-semibold">Visit Us in Chiang Mai</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-stone-100">
+                    การเดินทาง & พิกัดร้าน
+                </h2>
+                <p class="text-stone-300 text-sm leading-relaxed font-light">
+                    ร้านตั้งอยู่ใจกลางย่านนิมมานเหมินทร์ ตกแต่งบรรยากาศอบอุ่น พร้อมมุมถ่ายรูปสวยๆ เดินทางสะดวก มีพื้นที่จอดรถสำหรับลูกค้า
+                </p>
+
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-lanna-card border border-lanna-gold/30 flex items-center justify-center text-lanna-gold shrink-0 mt-1">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-stone-200 font-semibold text-sm">ที่อยู่ร้าน</h4>
+                            <p class="text-stone-400 text-sm mt-0.5">18/4 นิมมานเหมินทร์ ซอย 7 ต.สุเทพ อ.เมือง จ.เชียงใหม่ 50200</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-lanna-card border border-lanna-gold/30 flex items-center justify-center text-lanna-gold shrink-0 mt-1">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-stone-200 font-semibold text-sm">เวลาเปิด-ปิด บริการ</h4>
+                            <p class="text-stone-400 text-sm mt-0.5">เปิดบริการทุกวัน: 10:00 น. - 21:00 น. (L.O. 20:30 น.)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 rounded-xl bg-lanna-card border border-lanna-gold/30 flex items-center justify-center text-lanna-gold shrink-0 mt-1">
+                            <i class="fa-solid fa-square-parking"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-stone-200 font-semibold text-sm">ที่จอดรถ</h4>
+                            <p class="text-stone-400 text-sm mt-0.5">มีลานจอดรถรองรับบริเวณท้ายซอย 7 (ประทับตราจอดฟรี 2 ชม.)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex items-center space-x-4">
+                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center space-x-2 bg-lanna-gold hover:bg-lanna-amber text-lanna-dark font-semibold px-6 py-3 rounded-xl text-sm transition">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>นำทางด้วย Google Maps</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Map Mockup Container -->
+            <div class="bg-lanna-card rounded-3xl p-4 border border-lanna-gold/30 shadow-2xl relative overflow-hidden h-96 flex flex-col justify-between">
+                <div class="absolute inset-0 bg-stone-900 opacity-90">
+                    <svg class="w-full h-full opacity-20" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D4AF37" stroke-width="0.5"/>
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#grid)" />
+                    </svg>
+                </div>
+
+                <div class="relative z-10 m-auto text-center space-y-3">
+                    <div class="w-16 h-16 rounded-full bg-lanna-gold text-lanna-dark flex items-center justify-center text-2xl mx-auto shadow-2xl animate-bounce">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div class="bg-lanna-dark/90 border border-lanna-gold/40 px-4 py-2 rounded-xl backdrop-blur-md">
+                        <h4 class="font-bold text-lanna-gold text-sm">LANNA EATS @ NIMMAN</h4>
+                        <p class="text-xs text-stone-300">Nimman Soi 7, Chiang Mai</p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 text-right">
+                    <span class="text-[10px] text-stone-500 uppercase tracking-widest">Interactive Map Placeholder</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= 8. FOOTER ================= -->
+    <footer class="bg-lanna-dark border-t border-stone-800 py-12 text-stone-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8 mb-12">
+            
+            <div class="space-y-3 md:col-span-2">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl font-bold font-serif gold-gradient-text">LANNA EATS</span>
+                </div>
+                <p class="text-stone-400 text-xs leading-relaxed max-w-sm">
+                    ร้านข้าวซอยยกระดับแห่งแรกในเชียงใหม่ ที่ผสานสูตรล้านนาดั้งเดิมเข้ากับวัตถุดิบพรีเมียมและประสบการณ์การรับประทานอาหารร่วมสมัย
+                </p>
+            </div>
+
+            <div>
+                <h5 class="text-stone-200 font-semibold mb-3 text-sm">เมนูแนะนำ</h5>
+                <ul class="space-y-2 text-xs text-stone-400">
+                    <li><a href="#food-menu" class="hover:text-lanna-gold transition">ข้าวซอยเนื้อวากิวออสเตรเลีย</a></li>
+                    <li><a href="#food-menu" class="hover:text-lanna-gold transition">ข้าวซอยน่องไก่ Confit</a></li>
+                    <li><a href="#food-menu" class="hover:text-lanna-gold transition">ข้าวซอยแห้งกุ้งแม่น้ำย่าง</a></li>
+                    <li><a href="#drink-menu" class="hover:text-lanna-gold transition">ชาไทยลำไย Cold Brew</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h5 class="text-stone-200 font-semibold mb-3 text-sm">ติดตามเรา</h5>
+                <div class="flex space-x-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-lanna-card border border-stone-800 flex items-center justify-center text-stone-300 hover:text-lanna-gold hover:border-lanna-gold transition">
+                        <i class="fa-brands fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-lanna-card border border-stone-800 flex items-center justify-center text-stone-300 hover:text-lanna-gold hover:border-lanna-gold transition">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </a>
+                    <a href="#order-qr" class="w-9 h-9 rounded-full bg-lanna-card border border-stone-800 flex items-center justify-center text-stone-300 hover:text-lanna-gold hover:border-lanna-gold transition">
+                        <i class="fa-brands fa-line text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-stone-800/80 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500">
+            <p>© 2026 LANNA EATS Chiang Mai. All rights reserved.</p>
+            <p class="mt-2 sm:mt-0">Designed for Modern Food Lovers & Travelers</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
